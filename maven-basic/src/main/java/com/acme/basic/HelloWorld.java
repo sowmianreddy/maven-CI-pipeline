@@ -3,7 +3,7 @@ package com.acme.basic;
 public class HelloWorld {
 
   void sayHello() {
-    System.out.println("Hello World from pipeline again!");
+    System.out.println("Hello World from pipeline again test!");
   }
 
   void notCovered() {
