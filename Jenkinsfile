@@ -28,7 +28,6 @@ pipeline {
                         sh '''
 				export MAVEN_HOME=/opt/apache-maven-3.6.3
                                 export PATH=${MAVEN_HOME}/bin:${PATH}
-				cd maven-basic
 			        mvn test
 
 			'''
@@ -44,15 +43,14 @@ pipeline {
   					  }
    				     steps {
  					sh ' pwd '	
-  					 dir("maven-basic"){
-                                         sh ' pwd '  
+  					// dir("maven-basic"){
        					 withSonarQubeEnv('sonarqube') {
            				 sh "${scannerHome}/bin/sonar-scanner"
        					 }
        					 timeout(time: 10, unit: 'MINUTES') {
            				 waitForQualityGate abortPipeline: true
        					 }
-   					 }
+   					// }
 					}
 			} 
 
