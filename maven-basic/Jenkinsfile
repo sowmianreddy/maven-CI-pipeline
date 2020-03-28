@@ -40,7 +40,7 @@ pipeline {
 
                       stage('Sonarqube') {
 				    environment {
-       					 scannerHome = tool 'SonarQubeScanner1'
+       					 scannerHome = tool 'SonarQubeScanner'
   					  }
    				     steps {
  					sh ' pwd '	
