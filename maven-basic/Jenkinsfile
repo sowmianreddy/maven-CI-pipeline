@@ -44,7 +44,7 @@ pipeline {
   					  }
    				     steps {
  					sh ' pwd '	
-  					 dir("sonarqube-scanner-maven/maven-basic"){
+  					 dir("maven-basic"){
                                          sh ' pwd '  
        					 withSonarQubeEnv('sonarqube') {
            				 sh "${scannerHome}/bin/sonar-scanner"
