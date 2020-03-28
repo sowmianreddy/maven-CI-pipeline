@@ -26,6 +26,8 @@ pipeline {
        					 scannerHome = tool 'SonarQubeScanner'
   					  }
    				     steps {
+ 					sh ' pwd '	
+  					 dir("sonarqube-scanner-maven/maven-basic"){
        					 withSonarQubeEnv('sonarqube') {
            				 sh "${scannerHome}/bin/sonar-scanner"
        					 }
@@ -33,6 +35,7 @@ pipeline {
            				 waitForQualityGate abortPipeline: true
        					 }
    					 }
+					}
 			} 
 
 
