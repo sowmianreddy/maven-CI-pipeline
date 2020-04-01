@@ -2,8 +2,6 @@ pipeline
  {
           agent any 
       	  environment {
-            	DISABLE_AUTH = 'true'
-            	DB_ENGINE    = 'sqlite'
        		     // This can be nexus3 or nexus2
         	     NEXUS_VERSION = "nexus3"
         	     // This can be http or https
@@ -11,30 +9,29 @@ pipeline
         	     // Where your Nexus is running
     		       NEXUS_URL ="3.101.12.222:8081"
         	     // Repository where we will upload the artifact
-      	       NEXUS_REPOSITORY = "test-repo"
+      	       	      NEXUS_REPOSITORY = "test-repo"
         	     // Jenkins credential id to authenticate to Nexus OSS
         	     NEXUS_CREDENTIAL_ID = "nexus-credentials"
-           		 JAVA_HOME = "/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.242.b08-0.50.amzn1.x86_64/"
-             	//PATH = "${JAVA_HOME}/bin:$PATH"
+           	     JAVA_HOME = "/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.242.b08-0.50.amzn1.x86_64/"
         	     MAVEN_HOME = "/opt/apache-maven-3.6.3"
         	     PATH = "${MAVEN_HOME}/bin:${JAVA_HOME}/bin:$PATH"
          	}
         stages
         {
 		        
-		        stage('Unit Test')
-		        {
-		          steps 
-		          {
+			stage('Unit Test')
+			{
+					steps 
+		            {
 
-                  sh '''
-				          export MAVEN_HOME=/opt/apache-maven-3.6.3
-                  export PATH=${MAVEN_HOME}/bin:${PATH}
-			            mvn test
-              		'''
-        	    }
+							sh '''
+							export MAVEN_HOME=/opt/apache-maven-3.6.3
+							export PATH=${MAVEN_HOME}/bin:${PATH}
+							mvn test
+							'''
+					}
 
-		        }
+		    }
 
             stage('Sonarqube')
             {
