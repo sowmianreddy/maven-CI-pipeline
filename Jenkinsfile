@@ -55,22 +55,22 @@ pipeline {
 
 		}
 
-                      stage('Sonarqube') {
-				    environment {
-       					 scannerHome = tool 'SonarQube Scanner'
-  					  }
-   				     steps {
- 					sh ' pwd '	
-  					// dir("maven-basic"){
-       					 withSonarQubeEnv('sonarqube') {
-           				 sh "${scannerHome}/bin/sonar-scanner"
-       					 }
-       					 timeout(time: 10, unit: 'MINUTES') {
-           				 waitForQualityGate abortPipeline: true
-       					 }
-   					// }
-					}
-			} 
+               //       stage('Sonarqube') {
+		//		    environment {
+       		//			 scannerHome = tool 'SonarQube Scanner'
+  		//			  }
+   		//		     steps {
+ 		//			sh ' pwd '	
+  		//			// dir("maven-basic"){
+       		//			 withSonarQubeEnv('sonarqube') {
+           	//			 sh "${scannerHome}/bin/sonar-scanner"
+       		//			 }
+       		//			 timeout(time: 10, unit: 'MINUTES') {
+           	//			 waitForQualityGate abortPipeline: true
+       		//			 }
+   		//			// }
+		//			}
+		//	} 
 
 
         	stage ('Build') {
