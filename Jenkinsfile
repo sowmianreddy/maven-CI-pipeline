@@ -39,30 +39,30 @@ pipeline
          				   	 scannerHome = tool 'SonarQube Scanner'
     					  }
      				    steps 
-                {
+						{
    		   					 withSonarQubeEnv('sonarqube') {
-           				 sh "${scannerHome}/bin/sonar-scanner"
-         		   		}
-         			  	timeout(time: 10, unit: 'MINUTES') {
+							sh "${scannerHome}/bin/sonar-scanner"
+							}
+         			  	`	timeout(time: 10, unit: 'MINUTES') {
              				 waitForQualityGate abortPipeline: true
          				  }
      					
   					    }
-		      	} 
+		    } 
 
 
-        	  stage ('Build') 
+        	stage ('Build') 
             {
-            		steps
+            	steps
                 {
-                		dir ("${env.WORKSPACE}")
+                	dir ("${env.WORKSPACE}")
                     {
                     
     				          	sh '''
-    					          export MAVEN_HOME=/opt/apache-maven-3.6.3
-                        export PATH=${MAVEN_HOME}/bin:${PATH}
+    					        export MAVEN_HOME=/opt/apache-maven-3.6.3
+								export PATH=${MAVEN_HOME}/bin:${PATH}
             				    mvn clean             		
-    					          mvn -Dmaven.test.failure.ignore=true install
+    					        mvn -Dmaven.test.failure.ignore=true install
     					           '''
                 		}
             		}
