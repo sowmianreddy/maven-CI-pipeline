@@ -33,7 +33,7 @@ pipeline
 
 		    }
 
-            stage('Sonarqube')
+            stage('Sonarqube Code quality check')
             {
   				      environment {
          				   	 scannerHome = tool 'SonarQube Scanner'
